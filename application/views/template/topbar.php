@@ -11,9 +11,9 @@
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
-            
+
             <!-- Page Heading -->
-            <h1 class="h-3 mb-2 text-gray-800"><?= $judul; ?></h1>
+            <h3 class="h-3 mb-2 text-gray-800"><?= $judul; ?></h3>
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -24,7 +24,12 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['nama']; ?></span>
-                        <img class="img-profile rounded-circle" src="<?= base_url() . 'assets/img/undraw_profile.svg'; ?>">
+                        <?php if ($user['image'] == 'default.jpg') {
+                            $img =  base_url() . 'assets/img/undraw_profile.svg';
+                        } else {
+                            $img = base_url() . 'assets/img/profile/' . $user['image'];
+                        } ?>
+                        <img class="img-profile rounded-circle" src="<?= $img; ?>">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

@@ -15,9 +15,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Profil Saya';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
-
-        // var_dump($data['user']);
-        // die();
+        $data['where'] = '';
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -44,6 +42,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Data Anggota';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['where'] = '';
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim', [
             'required' => 'Nama tidak boleh kosong'

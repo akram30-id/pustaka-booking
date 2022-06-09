@@ -13,8 +13,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+    <li <?php if($where == "admin"){$here = 'active';}else{$here = '';} ?> class="nav-item <?= $here; ?>">
+        <a class="nav-link" href="<?= base_url(); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -27,14 +27,14 @@
         Master Data
     </div>
 
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li <?php if($where == "kategori_buku"){$here = 'active';}else{$here = '';} ?> class="nav-item <?= $here; ?>">
+        <a class="nav-link" href="<?= base_url() . 'buku/kategori'; ?>">
             <i class="fas fa-atlas"></i>
             <span>Kategori Buku</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+    <li <?php if($where == "data_buku"){$here = 'active';}else{$here = '';} ?> class="nav-item <?= $here; ?>">
+        <a class="nav-link" href="<?= base_url() . 'buku'; ?>">
             <i class="fas fa-book"></i>
             <span>Data Buku</span></a>
     </li>

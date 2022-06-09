@@ -49,6 +49,15 @@
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url() . 'assets/js/sb-admin-2.min.js'; ?>"></script>
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        var loadFile = function(event){
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+
     <script>
         $('.custom-file-input').on('change', function(){
             let fileName = $(this).val().split('\\').pop();
@@ -74,6 +83,8 @@
 
         $(document).ready(function(){
             $('#table-datatable').dataTable();
+            $('#kategoriBuku').DataTable();
+            $('#tblBuku').DataTable();
         });
         
         $('.alert-message').alert().delay(3500).slideUp('slow')

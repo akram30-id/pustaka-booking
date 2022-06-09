@@ -84,6 +84,9 @@
             $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', [
                 'required' => 'Nama Belum diisi'
             ]);
+            $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required', [
+                'required' => 'Alamat Belum diisi'
+            ]);
             $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]', [
                 'valid_email' => 'Email tidak benar',
                 'required' => 'Nama Belum diisi',
@@ -102,8 +105,10 @@
                 $this->load->view('autentifikasi/footer');
             } else {
                 $email = $this->input->post('email', true);
+                $alamat = html_escape($this->input->post('alamat'));
                 $data = [
                     'nama' => htmlspecialchars($this->input->post('nama', true)),
+                    'alamat' => $alamat,
                     'email' => htmlspecialchars($email),
                     'image' => 'default.jpg',
                     'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),

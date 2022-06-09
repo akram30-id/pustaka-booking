@@ -26,11 +26,11 @@
                             } else {
                                 $img = base_url() . 'assets/img/profile/' . $user['image'];
                             } ?>
-                            <img src="<?= $img; ?>" class="img-thumbnail" alt="">
+                            <img src="<?= $img; ?>" class="img-thumbnail" alt="" id="output">
                         </div>
                         <div class="col-sm-9">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image" name="image">
+                                <input type="file" accept="image/*" class="custom-file-input" id="image" name="image" onchange="loadFile(event)" style="display: none;">
                                 <label class="custom-file-label" for="image">Pilih file</label>
                             </div>
                         </div>

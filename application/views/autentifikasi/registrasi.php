@@ -14,6 +14,10 @@
                                 <small class="text-danger pl-3"><?= form_error('nama'); ?></small>
                             </div>
                             <div class="form-group">
+                                <textarea name="alamat" id="alamat" rows="2" placeholder="Alamat Lengkap" class="form-control form-control-user"></textarea>
+                                <small class="text-danger pl-3"><?= form_error('alamat'); ?></small>
+                            </div>
+                            <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Alamat Email" value="<?= set_value('email'); ?>">
                                 <small class="text-danger pl-3"><?= form_error('email'); ?></small>
                             </div>
