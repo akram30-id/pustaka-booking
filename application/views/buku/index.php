@@ -8,7 +8,6 @@
                     <?= validation_errors(); ?>
                 </div>
             <?php } ?>
-            <?= $this->session->flashdata('pesan'); ?>
             <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#bukuBaruModal"><i class="fas fa-file-alt"></i> Buku Baru</a>
             <div class="card">
                 <div class="card-body">
@@ -123,8 +122,8 @@
 
 <!-- Modal Edit buku-->
 <?php foreach ($buku as $b) { ?>
-    <div class="modal fade" id="editBukuModal<?= $b['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="editBukuModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="editBukuModal<?= $b['id'] ?>" role="dialog" aria-labelledby="editBukuModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editBukuModalLabel">Edit Buku</h5>
@@ -136,7 +135,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="judul_buku" name="judul_buku" placeholder="Masukkan Judul Buku" value="<?= $b['judul_buku']; ?>">
-                            <input type="hidden" value="<?= $b['id']; ?>">
+                            <input type="hidden" value="<?= $b['id']; ?>" name="id">
                         </div>
                         <div class="form-group">
                             <select name="id_kategori" class="form-control form-control-user">
@@ -161,10 +160,18 @@
                         </div>
                         <div class="form-group">
                             <input type="number" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukkan nominal stok" value="<?= $b['stok']; ?>">
+                            <input type="hidden" name="dipinjam" value="<?= $b['dipinjam']; ?>">
+                            <input type="hidden" name="dibooking" value="<?= $b['dibooking']; ?>">
                         </div>
                         <div class="form-group">
                             <img src="<?= base_url() . 'assets/img/upload/' . $b['image']; ?>" id="output" style="width: 72px;">
-                            <input type="file" accept="image/*" class="custom-file-input" id="image" name="image" onchange="loadFile(event)" style="display: none;">
+                            <input type="hidden" value="<?= $b['image']; ?>" name="old_pict">
+                        </div>
+                        <div class="input-group mb-5">
+                            <div class="costum-file">
+                                <input type="file" accept="image/*" class="custom-file-input" onchange="loadFile(event)" id="image" name="image">
+                                <label for="image" class="custom-file-label">Choose File</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

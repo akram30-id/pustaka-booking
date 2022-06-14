@@ -81,7 +81,7 @@ class Buku extends CI_Controller
             ];
             //eksekusi ke db
             $this->ModelBuku->simpanBuku($data);
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Edit Data Sukses</div>');
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Tambah Data Sukses</div>');
             redirect('buku');
         }
     }
@@ -105,6 +105,7 @@ class Buku extends CI_Controller
         //     $data['k'] = $k['kategori'];
         // }        
         $data['kategori'] = $this->ModelBuku->getKategori()->result_array();
+        $data['where'] = 'data_buku';
 
         $this->form_validation->set_rules('judul_buku', 'Judul Buku', 'required|min_length[3]', [
             'required' => 'Judul Buku Harus Diisi', 'min_length' => 'Judul Buku Terlalu Pendek'
@@ -124,7 +125,7 @@ class Buku extends CI_Controller
             'min_length' => 'Nama Penerbit Terlalu Pendek'
         ]);
 
-        $this->form_validation->set_rules('tahun', 'Tahun Terbit', 'required|min_length[3]', [
+        $this->form_validation->set_rules('tahun_terbit', 'Tahun Terbit', 'required|min_length[3]', [
             'required' => 'Tahun Terbit Harus Diisi',
             'min_length' => 'Tahun Terbit Terlalu Pendek'
         ]);
@@ -164,19 +165,25 @@ class Buku extends CI_Controller
             }
 
             $data = [ //yang akan disimpan
+                'id' => $this->input->post('id'),
                 'judul_buku' => $this->input->post('judul_buku'),
                 'id_kategori' => $this->input->post('id_kategori'),
                 'pengarang' => $this->input->post('pengarang'),
                 'penerbit' => $this->input->post('penerbit'),
-                'tahun_terbit' => $this->input->post('tahun'),
+                'tahun_terbit' => $this->input->post('tahun_terbit'),
                 'isbn' => $this->input->post('isbn'),
-                'stok' => $this->input->post('stok'),
+                'stok' => intval($this->input->post('stok')),
+                'dipinjam' => intval($this->input->post('dipinjam')),
+                'dibooking' => intval($this->input->post('dibooking')),
                 'image' => $gambar,
             ];
+
+            // var_dump($data);
+            // die();
             //eksekusi ke db
-            $this->ModelBuku->updateBuku($data, ['id' => $this->input->post('id')]);
+            $this->ModelBuku->updateBuku($data, $this->input->post('id'));
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Ubah Data Sukses</div>');
-            redirect('buku');
+            return redirect('buku');
         }
     }
 

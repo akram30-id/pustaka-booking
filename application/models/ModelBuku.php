@@ -18,9 +18,10 @@ class ModelBuku extends CI_Model
         $this->db->insert('buku', $data);
     }
 
-    public function updateBuku($data = null, $where = null)
+    public function updateBuku($data, $where)
     {
-        $this->db->update('buku', $data, $where);
+        $this->db->where('id', $where);
+        $this->db->update('buku', $data);
     }
 
     public function hapusBuku($where = null)
